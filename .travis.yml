@@ -6,29 +6,24 @@ jobs:
       cache:
         directories:
           - ~/.npm
-      script:
+      install:
         - |
           npm install -g npm@latest expo-cli && \
-          npm ci && \
+          npm ci
+      script:
+        - |
           npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD && \
           npx expo publish --non-interactive
     - stage: deploy
       os: osx
       language: objective-c
       osx_image: xcode9.4
-      node_js: v8.11.3
       env:
         - SHELL_APP_BUILDER=1
         - EXPO_PUBLISH_URL=https://exp.host/@iilab/mobile
-      script:
-        # - | # Build xdl
-        #   cd $HOME && \
-        #   git clone https://github.com/expo/xdl.git && \
-        #   cd xdl && \
-        #   yarn && \
-        #   gulp build && \
-        #   cp `npm pack` xdl-packaged.tgz
+      install:
         - |
+          nvm use v8.11.3 && \
           echo "Install build dependencies" && \
           npm install npm@latest gulp-cli -g && \
           gem install cocoapods --no-ri --no-rdoc && \
@@ -38,7 +33,16 @@ jobs:
           cd expo/tools-public && \
           git fetch origin wayfair-30 && \
           git checkout wayfair-30 && \
-          npm ci && \
+          npm ci
+      script:
+        # - | # Build xdl
+        #   cd $HOME && \
+        #   git clone https://github.com/expo/xdl.git && \
+        #   cd xdl && \
+        #   yarn && \
+        #   gulp build && \
+        #   cp `npm pack` xdl-packaged.tgz
+        - |
           echo "Building iOS archive" && \
           gulp ios-shell-app --action build --type archive --configuration Release && \
           echo "Configuring iOS archive" && \
