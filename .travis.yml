@@ -8,7 +8,7 @@ jobs:
   include:
     - stage: publish
       script:
-        - npm install -g npm@latest
+        - npm install -g npm@latest expo-cli
         - npm ci
         - npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD
         - npx expo publish --non-interactive
