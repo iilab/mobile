@@ -2,7 +2,7 @@ jobs:
   include:
     - stage: publish
       language: node_js
-      node_js: lts/*
+      node_js: v8.11.3
       cache:
         directories:
           - ~/.npm
@@ -16,6 +16,7 @@ jobs:
       os: osx
       language: objective-c
       osx_image: xcode9.4
+      node_js: v8.11.3
       env:
         - SHELL_APP_BUILDER=1
         - EXPO_PUBLISH_URL=https://exp.host/@iilab/mobile
