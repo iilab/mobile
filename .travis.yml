@@ -23,6 +23,7 @@ jobs:
         - EXPO_PUBLISH_URL=https://exp.host/@iilab/mobile
       before_script:
         - |
+          nvm install v8.11.3 && \
           nvm use v8.11.3 && \
           echo "Install build dependencies" && \
           npm install npm@latest gulp-cli -g && \
