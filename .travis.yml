@@ -21,7 +21,7 @@ jobs:
       env:
         - SHELL_APP_BUILDER=1
         - EXPO_PUBLISH_URL=https://exp.host/@iilab/mobile
-      install:
+      before_script:
         - |
           nvm use v8.11.3 && \
           echo "Install build dependencies" && \
