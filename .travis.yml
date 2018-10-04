@@ -1,12 +1,11 @@
-language: objective-c
-osx_image: xcode9.4
-cache:
-  directories:
-    - ~/.npm
-
 jobs:
   include:
     - stage: publish
+      language: node_js
+      node_js: lts/*
+      cache:
+        directories:
+          - ~/.npm
       script:
         - |
           npm install -g npm@latest expo-cli && \
@@ -14,6 +13,8 @@ jobs:
           npx expo login -u $EXPO_USERNAME -p $EXPO_PASSWORD && \
           npx expo publish --non-interactive
     - stage: deploy
+      language: objective-c
+      osx_image: xcode9.4
       env:
         - SHELL_APP_BUILDER=1
         - EXPO_PUBLISH_URL=https://exp.host/@iilab/mobile
