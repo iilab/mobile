@@ -27,12 +27,14 @@ jobs:
         #   cp `npm pack` xdl-packaged.tgz
         - |
           echo "Install build dependencies" && \
-          npm install gulp-cli -g && \
+          npm install npm@latest gulp-cli -g && \
           gem install cocoapods --no-ri --no-rdoc && \
           echo "Install expo fork" && \
           cd $HOME && \
           git clone https://github.com/iilab/expo.git && \
           cd expo/tools-public && \
+          git fetch origin wayfair-30 && \
+          git checkout wayfair-30 && \
           npm ci && \
           echo "Building iOS archive" && \
           gulp ios-shell-app --action build --type archive --configuration Release && \
