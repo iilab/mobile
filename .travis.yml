@@ -53,7 +53,7 @@ jobs:
                              --action configure \
                              --type archive \
                              --archivePath shellAppBase-archive/ExpoKitApp.xcarchive/Products/Applications/ExpoKitApp.app \
-                             --sdkVersion 30 \
+                             --sdkVersion 30.0.0 \
                              --output $HOME/Mobile.xcarchive && \
           cd $TRAVIS_BUILD_DIR && \
           bundle install && \
