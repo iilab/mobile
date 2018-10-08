@@ -46,9 +46,10 @@ jobs:
         #   cp `npm pack` xdl-packaged.tgz
         - |
           echo "Building iOS archive" && \
-          gulp ios-shell-app --action build --type archive --configuration Release && \
+          gulp ios-shell-app --verbose --action build --type archive --configuration Release && \
           echo "Configuring iOS archive" && \
-          gulp ios-shell-app --url $EXPO_PUBLISH_URL \
+          gulp ios-shell-app --verbose \
+                             --url $EXPO_PUBLISH_URL \
                              --action configure \
                              --type archive \
                              --archivePath shellAppBase-archive/ExpoKitApp.xcarchive/Products/Applications/ExpoKitApp.app \
